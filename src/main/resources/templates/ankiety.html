@@ -5,31 +5,50 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <h1>Ankiety</h1>
-    <table>
-    <thead>
-        <tr>
-            <th> Id </th>
-            <th> Nazwa </th>
-            <th> Id ankiety </th>
-        </tr>
-    </thead>
-	    <tbody>
-			<tr th:if="${ankiety.empty}">
-	            <td colspan="2"> Brak ankiet</td>
-	        </tr>
-	        <tr th:each="a : ${ankiety}">
-	            <td><span th:text="${a.id}"> Title </span></td>
-	            <td><span th:text="${a.nazwa}"> Author </span></td>
-	            <td><span th:text="${a.id_ankiety}"> Author </span></td>
-	        </tr>
-	    </tbody>
-	</table>
+	<div th:if="${error}">
+		<h2 style="color:red" th:text="${error}"></h2>
+	</div>
+	<div th:if="!${ankiety.empty}">
+		<h1>Ankiety</h1>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nazwa</th>
+					<th>Id ankiety</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${ankiety.empty}">
+					<td colspan="2" style="color:green">Brak ankiet</td>
+				</tr>
+				<tr th:each="a : ${ankiety}">
+					<td><span th:text="${a.id}"> Title </span></td>
+					<td><span th:text="${a.nazwa}"> Author </span></td>
+					<td><span th:text="${a.id_ankiety}"> ID Ankiety </span></td>
+					<td>
+						<form action="#" th:action="@{/ankiety/usun}" method="post">
+							<input type="hidden" th:value="${a.id}" name="id">
+							<input type="submit" value="Usuń"/>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div> 
+	<div th:if="${ankiety.empty}"> 
+		<h1>Brak ankiet</h1>
+	</div>
+
+
 	<h1>Dodaj/edytuj</h1>
-    <form action="#" th:action="@{/ankiety}" th:object="${ankieta}" method="post">
+    <form action="#" th:action="@{/ankiety}" th:object="${ankietaForm}" method="post">
     	<p>Id: <input type="text" th:field="*{id}" /></p>
+    	<span th:if="${#fields.hasErrors('id')}" th:errors="*{id}">ID Error</span>
         <p>Tekst: <input type="text" th:field="*{nazwa}" /></p>
+        <span th:if="${#fields.hasErrors('nazwa')}" th:errors="*{nazwa}">ID Error</span>
         <p>Id ankiety: <input type="text" th:field="*{id_ankiety}" /></p>
+        <span th:if="${#fields.hasErrors('id_ankiety')}" th:errors="*{id_ankiety}">ID Error</span>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>

@@ -1,20 +1,25 @@
 package com.ardz.ankieter.data;
 
-public class AnkietaDTO {
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class AnkietaForm {
 	
 
 	public Long id;
+	@NotNull
+	@Size(min = 1, max = 255)
 	public String nazwa;
 	public Long id_ankiety;
 	
-	public AnkietaDTO(Long id, String nazwa, Long id_ankiety) {
+	public AnkietaForm(Long id, String nazwa, Long id_ankiety) {
 		super();
 		this.id = id;
 		this.nazwa = nazwa;
 		this.id_ankiety = id_ankiety;
 	}
 
-	public AnkietaDTO() {
+	public AnkietaForm() {
 	}
 
 	public Long getId() {

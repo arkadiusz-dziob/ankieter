@@ -27,12 +27,19 @@ public class Ankieta {
 	
     @ManyToOne
     private Ankieta rodzic;
+    
+    public Ankieta() {}
+    		
+    public Ankieta(Long id, String nazwa, Ankieta rodzic) {
+		super();
+		this.id = id;
+		this.nazwa = nazwa;
+		this.rodzic = rodzic;
+	}
 
     @OneToMany(mappedBy="rodzic")
     private Set<Ankieta> pytania = new HashSet<Ankieta>();
     
-    public Ankieta() {}
-
 	public Long getId() {
 		return id;
 	}
