@@ -3,9 +3,14 @@
 <head> 
     <title>Ankiety</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous" />
 </head>
 <body>
-	<div th:if="${error}">
+    <p class="text-danger">Zalogowany jako: [[${session.username}]]</p>
+
+    <div th:if="${error}">
 		<h2 style="color:red" th:text="${error}"></h2>
 	</div>
 	<div th:if="!${ankiety.empty}">
@@ -35,8 +40,8 @@
 				</tr>
 			</tbody>
 		</table>
-	</div> 
-	<div th:if="${ankiety.empty}"> 
+	</div>
+	<div th:if="${ankiety.empty}">
 		<h1>Brak ankiet</h1>
 	</div>
 

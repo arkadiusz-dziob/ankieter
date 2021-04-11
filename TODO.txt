@@ -1,0 +1,1 @@
+1. napisać procedurę SQL aktualizującą/dodającą pytanie do ankiety.
