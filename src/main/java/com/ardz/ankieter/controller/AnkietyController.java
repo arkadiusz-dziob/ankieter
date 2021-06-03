@@ -24,7 +24,7 @@ public class AnkietyController {
     @GetMapping({"/ankiety"})
     public void get(Model model) {
     	model.addAttribute(new AnkietaForm());
-        model.addAttribute("ankiety", ankietyService.wszystkie());
+        model.addAttribute("ankiety", ankietyService.ankiety());
     }
     
     @PostMapping({"/ankiety"})
@@ -39,7 +39,7 @@ public class AnkietyController {
     	} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-    	model.addAttribute("ankiety", ankietyService.wszystkie());
+    	model.addAttribute("ankiety", ankietyService.ankiety());
     }
     
     @PostMapping({"/ankiety/usun"})
@@ -51,7 +51,7 @@ public class AnkietyController {
     	} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-    	model.addAttribute("ankiety", ankietyService.wszystkie());
+    	model.addAttribute("ankiety", ankietyService.ankiety());
     	return new RedirectView("/ankiety");
     }
 

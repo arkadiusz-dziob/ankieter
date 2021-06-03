@@ -3,6 +3,7 @@ package com.ardz.ankieter.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +15,11 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Entity
+@Entity 
 @Data  
-@Table(name = "ANKIETY")
+@Table(name = Ankieta.TABLE_NAME)
 public class Ankieta {
+	public static final String TABLE_NAME = "ANKIETY";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; 
@@ -25,7 +27,7 @@ public class Ankieta {
 	@Column(length = 255, name = "NAZWA")
 	private String nazwa;
 	
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Ankieta rodzic;
     
     public Ankieta() {}

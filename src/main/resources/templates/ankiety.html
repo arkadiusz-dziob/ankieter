@@ -1,40 +1,41 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
-<head> 
-    <title>Ankiety</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous" />
+<head>
+  <title>Ankiety</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <div th:replace="header :: naglowek"></div>
 </head>
 <body>
-    <p class="text-danger">Zalogowany jako: [[${session.username}]]</p>
-
     <div th:if="${error}">
 		<h2 style="color:red" th:text="${error}"></h2>
 	</div>
 	<div th:if="!${ankiety.empty}">
 		<h1>Ankiety</h1>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Nazwa</th>
-					<th>Id ankiety</th>
-				</tr>
-			</thead>
+		<table border="0">
 			<tbody>
 				<tr th:if="${ankiety.empty}">
 					<td colspan="2" style="color:green">Brak ankiet</td>
 				</tr>
 				<tr th:each="a : ${ankiety}">
-					<td><span th:text="${a.id}"> Title </span></td>
-					<td><span th:text="${a.nazwa}"> Author </span></td>
-					<td><span th:text="${a.id_ankiety}"> ID Ankiety </span></td>
+					<td><span th:text="${a.id}"/></td>
+					<td><span th:text="${a.nazwa}"/></td>
+					<td><span th:text="${a.id_ankiety}"/></td>
 					<td>
 						<form action="#" th:action="@{/ankiety/usun}" method="post">
 							<input type="hidden" th:value="${a.id}" name="id">
 							<input type="submit" value="Usuń"/>
+						</form>
+					</td>
+					<td>
+						<form action="#" th:action="@{/edycja}" method="post">
+							<input type="hidden" th:value="${a.id}" name="id">
+							<input type="submit" value="Edytuj"/>
+						</form>
+					</td>
+					<td>
+						<form action="#" th:action="@{/wypelnianie}" method="post">
+							<input type="hidden" th:value="${a.id}" name="id">
+							<input type="submit" value="Wypełnij"/>
 						</form>
 					</td>
 				</tr>

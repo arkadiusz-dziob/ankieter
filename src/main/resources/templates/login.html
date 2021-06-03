@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+  <title>Logowanie</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <div th:replace="header :: naglowek"></div>
+</head>
+
+<body>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div th:if="${error}">
+        [[${error}]]
+      </div>
+      <div th:if="${logout}">
+        [[${logout}]]
+      </div>
+      <br />
+      <form th:action="@{/login}" method="post">
+        <input type="text" id="username" class="fadeIn second" name="username" placeholder="username">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

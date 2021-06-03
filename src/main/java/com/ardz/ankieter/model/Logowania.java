@@ -18,6 +18,4 @@ public class Logowania {
 	@ManyToOne
 	private Osoba osoba;
 	
-	@ManyToOne
-	private OsobaRola osobaRola;
 }

@@ -7,17 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.apache.tomcat.util.security.MD5Encoder;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data  
 @NoArgsConstructor 
+@AllArgsConstructor
 @Table(name = "OSOBY")
 public class Osoba {
 	@Id
@@ -33,10 +32,7 @@ public class Osoba {
 	@Column(name = "HASLO")
 	private String haslo;
 	
-	@ManyToOne
-	private OsobaRola osobaRola;
+	@Column(name = "ROLA")
+	private String rola;
 	
-	public void setHaslo(String haslo) {
-		this.haslo = MD5Encoder.encode(haslo.getBytes());
-	}
 }

@@ -20,10 +20,11 @@ public class AnkietyService {
 		ar.addOrUpdateAnkieta(ankietaDTO.getId(), ankietaDTO.getNazwa(), ankietaDTO.getId_ankiety());
 	}
 
-	public List<AnkietaForm> wszystkie() {
-		Iterable<Ankieta> wszystkie = ar.findAll();
+	
+	public List<AnkietaForm> ankiety() {
+		Iterable<Ankieta> wszystkie = ar.findByRodzicIdNull();
 		List<AnkietaForm> res = new ArrayList<>();
-		wszystkie.forEach((a) -> res.add(new AnkietaForm(a.getId(), a.getNazwa(), (a.getRodzic() != null)? a.getRodzic().getId() : null)));
+		wszystkie.forEach((a) -> res.add(new AnkietaForm(a.getId(), a.getNazwa(), null)));
 		return res;
 	}
 
