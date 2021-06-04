@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>Logowania</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <div th:replace="header :: naglowek"></div>
+</head>
+<body>
+	<div th:if="!${logowania.empty}">
+		<h1>Logowania:</h1>
+		<table border="1">
+			<tbody>
+				  <tr>
+					<th>Uzytkownik</th>
+					<th>Rola</th>
+					<th>Czas logowania</th>
+				</tr>
+				<tr th:each="a : ${logowania}">
+					<td><span th:text="${a.nazwa}"/></td>
+					<td><span th:text="${a.rola}"/></td>
+					<td><span th:text="${a.czas}"/></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

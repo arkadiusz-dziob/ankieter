@@ -27,10 +27,11 @@ public class RegistrationController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String loginPage(@RequestParam(value = "username", required = true) String username, 
                             @RequestParam(value = "password", required = true) String password,
-                            @RequestParam(value = "password", required = true) String role,
+                            @RequestParam(value = "role", required = true) String role,
                             Model model) {
         try {
         	osobyService.save(new OsobaDTO(username, password, role));
+        	model.addAttribute("error", "Utworzono użytkownika " + username);
         } 
         catch (Exception e) {
         	model.addAttribute("error", e.getMessage());

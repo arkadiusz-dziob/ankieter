@@ -21,4 +21,6 @@ public interface AnkietyRepository extends CrudRepository<Ankieta, Long> {
 	List<Long> findAllByParentId(Long rodzicId);
 	
 	List<Ankieta> findByRodzicIdNull();
+
+	List<Ankieta> findByRodzicId(Long id);
 }

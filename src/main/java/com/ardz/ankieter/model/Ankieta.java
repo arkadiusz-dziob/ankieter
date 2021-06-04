@@ -27,7 +27,7 @@ public class Ankieta {
 	@Column(length = 255, name = "NAZWA")
 	private String nazwa;
 	
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Ankieta rodzic;
     
     public Ankieta() {}

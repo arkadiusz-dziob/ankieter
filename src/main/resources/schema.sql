@@ -4,12 +4,16 @@ drop table if exists logowania ^;
 drop table if exists komentarze ^;
 drop table if exists osoby ^;
 drop table if exists ankiety ^;
+drop table if exists tlumaczenia ^;
+drop table if exists logowania ^;
 
 create table ankiety (id integer not null auto_increment, nazwa varchar(255), rodzic_id integer, primary key (id)) engine=InnoDB ^;
 create table komentarze (id integer not null auto_increment, komentarz varchar(1000), ankieta_id integer, osoba_id integer, primary key (id)) engine=InnoDB ^;
 create table odpowiedzi (id integer not null auto_increment, skala integer, ankieta_id integer, primary key (id)) engine=InnoDB ^;
 create table osoby (id integer not null auto_increment, data date, nazwa varchar(45), haslo varchar(100), rola varchar(45), primary key (id)) engine=InnoDB ^;
 create table wyniki (id integer not null auto_increment, wynik integer, ankieta_id integer, osoba_id integer, primary key (id)) engine=InnoDB ^;
+create table tlumaczenia (id integer not null auto_increment, ankieta_id integer, lang varchar(10), tlumaczenie varchar(1000), primary key (id)) engine=InnoDB ^;
+create table logowania (id integer not null auto_increment, nazwa varchar(45), rola varchar(45), czas datetime, primary key (id)) engine=InnoDB ^;
 
 alter table ankiety add constraint FK5x1lmbcfjurbd581xxwkd53if foreign key (rodzic_id) references ankiety (id) ON DELETE CASCADE ^;
 alter table komentarze add constraint FKa11rjfo95u6ed3ek1frcq48e8 foreign key (ankieta_id) references ankiety (id) ^;

@@ -11,8 +11,19 @@ INSERT INTO ankiety.ankiety (id, nazwa, rodzic_id) VALUES
 	 (6, 'Ankieta 2p pytanie 1',2),
 	 (7, 'Ankieta 2p pytanie 2',2) ^;
 	 
-INSERT INTO osoby (data, nazwa, haslo, rola) VALUES ('2020-10-11', 'admin', '$2a$10$8DAbM5UvIR8f.eNFeUuup.wQIVhMSrSt3HcX2UiEi7gq7XH8I8Y5a', 'ROLE_ADMIN') ^;
-INSERT INTO osoby (data, nazwa, haslo, rola) VALUES ('2020-10-12', 'user', '$2a$10$8DAbM5UvIR8f.eNFeUuup.wQIVhMSrSt3HcX2UiEi7gq7XH8I8Y5a', 'ROLE_USER') ^;
+	 
+	 
+
+INSERT INTO ankiety.ankiety (id, nazwa, rodzic_id) VALUES
+	 (8, 'Odp1',6),
+	 (9, 'Odp2',6) ^;
+	 
+INSERT INTO ankiety.ankiety (id, nazwa, rodzic_id) VALUES
+	 (10, 'Odp3',7),
+	 (11, 'Odp4',7) ^;
+	  
+INSERT INTO osoby (data, nazwa, haslo, rola) VALUES ('2020-10-11', 'admin', 'Gh3JHJBzJcaScd3wyUS8cg==', 'ROLE_ADMIN') ^;
+INSERT INTO osoby (data, nazwa, haslo, rola) VALUES ('2020-10-12', 'user', 'Gh3JHJBzJcaScd3wyUS8cg==', 'ROLE_USER') ^;
 
 
 

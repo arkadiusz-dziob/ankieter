@@ -3,7 +3,7 @@ package com.ardz.ankieter.data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class AnkietaForm {
+public class AnkietaDTO {
 
 	public Long id;
 	@NotNull
@@ -11,14 +11,14 @@ public class AnkietaForm {
 	public String nazwa;
 	public Long id_ankiety;
 	
-	public AnkietaForm(Long id, String nazwa, Long id_ankiety) {
+	public AnkietaDTO(Long id, String nazwa, Long id_ankiety) {
 		super();
 		this.id = id;
 		this.nazwa = nazwa;
 		this.id_ankiety = id_ankiety;
 	}
 
-	public AnkietaForm() {
+	public AnkietaDTO() {
 	}
 
 	public Long getId() {

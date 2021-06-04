@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <title>Ankiety</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -17,45 +18,51 @@
 					<td colspan="2" style="color:green">Brak ankiet</td>
 				</tr>
 				<tr th:each="a : ${ankiety}">
-					<td><span th:text="${a.id}"/></td>
-					<td><span th:text="${a.nazwa}"/></td>
-					<td><span th:text="${a.id_ankiety}"/></td>
-					<td>
+					<td class="id_column" sec:authorize="hasRole('ROLE_ADMIN')">
+						<span th:text="${a.id}"/>
+					</td>
+					<td class="text" sec:authorize="hasRole('ROLE_ADMIN')">
+						<form action="#" th:action="@{/ankiety/zmien}" method="post" th:id="${a.id}">
+							<input type="hidden" th:value="${a.id}" name="id">
+							<input type="text" th:value="${a.nazwa}" name="nazwa">
+						</form>
+					</td>
+					<td class="text" sec:authorize="hasRole('ROLE_USER')">
+						<span th:text="${a.nazwa}"/>
+					</td>
+					<td class="button" sec:authorize="hasRole('ROLE_ADMIN')">
+						<input type="submit" value="Zapisz" th:form="${a.id}"/>
+					</td>
+					<td class="button" sec:authorize="hasRole('ROLE_ADMIN')">
 						<form action="#" th:action="@{/ankiety/usun}" method="post">
 							<input type="hidden" th:value="${a.id}" name="id">
 							<input type="submit" value="Usuń"/>
 						</form>
 					</td>
-					<td>
-						<form action="#" th:action="@{/edycja}" method="post">
+					<td class="button" sec:authorize="hasRole('ROLE_ADMIN')">
+						<form action="#" th:action="@{/pytania}" method="get">
 							<input type="hidden" th:value="${a.id}" name="id">
 							<input type="submit" value="Edytuj"/>
 						</form>
 					</td>
-					<td>
-						<form action="#" th:action="@{/wypelnianie}" method="post">
+					<td class="button">
+						<form action="#" th:action="@{/quiz}" method="post">
 							<input type="hidden" th:value="${a.id}" name="id">
-							<input type="submit" value="Wypełnij"/>
+							<input type="submit" value="Wypełnij ankiete"/>
 						</form>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<div th:if="${ankiety.empty}">
-		<h1>Brak ankiet</h1>
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<br/>
+		<hr/>
+		<p>Wpisz nazwe nowego pytania:</p>
+		<form action="#" th:action="@{/ankiety/dodaj}" method="post" id="dodaj">
+				<input type="text" value="" name="nazwa" style="width: 30%">
+		</form>
+		<input type="submit" value="Dodaj ankiete" form="dodaj" style="width: 30%"/>
 	</div>
-
-
-	<h1>Dodaj/edytuj</h1>
-    <form action="#" th:action="@{/ankiety}" th:object="${ankietaForm}" method="post">
-    	<p>Id: <input type="text" th:field="*{id}" /></p>
-    	<span th:if="${#fields.hasErrors('id')}" th:errors="*{id}">ID Error</span>
-        <p>Tekst: <input type="text" th:field="*{nazwa}" /></p>
-        <span th:if="${#fields.hasErrors('nazwa')}" th:errors="*{nazwa}">ID Error</span>
-        <p>Id ankiety: <input type="text" th:field="*{id_ankiety}" /></p>
-        <span th:if="${#fields.hasErrors('id_ankiety')}" th:errors="*{id_ankiety}">ID Error</span>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
 </body>
 </html>

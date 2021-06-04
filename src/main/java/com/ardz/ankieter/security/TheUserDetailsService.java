@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.ardz.ankieter.data.repositories.OsobyRepository;
 import com.ardz.ankieter.model.Osoba;
 
-@Service("userDetailsService")
+//@Service("userDetailsService")
 public class TheUserDetailsService implements UserDetailsService {
 	
 	@Autowired

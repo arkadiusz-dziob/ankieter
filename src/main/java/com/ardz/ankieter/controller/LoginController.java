@@ -21,18 +21,20 @@ public class LoginController {
     						@RequestParam(value = "error", required = false) String error, 
                             @RequestParam(value = "logout", required = false) String logout,
                             Model model) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String errorMessge = null;
         if(error != null) {
             errorMessge = "Username or Password is incorrect !!";
             model.addAttribute("error", errorMessge);
+            return "login";
         }
         if(logout != null) {
-        	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if (auth != null){    
                 new SecurityContextLogoutHandler().logout(request, response, auth);
             }
             errorMessge = "Zostałeś wylogowany";
             model.addAttribute("logout", errorMessge);
+            return "redirect:/login";
         }
         return "login";
     }

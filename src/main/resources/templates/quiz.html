@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>Quiz</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <div th:replace="header :: naglowek"></div>
+</head>
+<body>
+	<h1>Pytanie nr [[${nr_pytania}]]/[[${ilosc_pytan}]]</h1>
+
+	<form action="#" th:action="@{/quiz/nastepne}" method="post">
+		<input type="hidden" th:value="${id}" name="id">
+		<input type="submit" value="Nastepne pytanie"/>
+	</form>
+
+	<form action="#" th:action="@{/quiz/zakoncz}" method="post">
+		<input type="submit" value="Zakoncz"/>
+	</form>
+</body>
+</html>
